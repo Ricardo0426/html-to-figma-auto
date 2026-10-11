@@ -1,0 +1,30 @@
+{
+  "name": "html-to-figma-auto-groups",
+  "version": "0.1.1",
+  "description": "Automatic-size batch HTML importer for Figma with editable groups and local asset diagnostics",
+  "license": "MIT",
+  "private": true,
+  "keywords": [
+    "figma",
+    "figma-plugin",
+    "html",
+    "converter",
+    "design",
+    "open-source"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.109.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "fflate": "^0.8.3"
+  }
+}

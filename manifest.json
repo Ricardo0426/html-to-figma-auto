@@ -1,0 +1,13 @@
+{
+  "name": "HTML 自动分组导入",
+  "id": "html-auto-groups-local-20261011",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"],
+  "networkAccess": {
+    "allowedDomains": ["*"],
+    "reasoning": "The user's HTML can reference remote images, fonts, stylesheets or explicitly enabled scripts. Import processing is local and has no upload backend."
+  },
+  "documentAccess": "dynamic-page"
+}
