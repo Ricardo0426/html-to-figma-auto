@@ -1,8 +1,10 @@
 # HTML 自动分组导入 Figma
 
+适合用于 AI 生成的 HTML 文件导入 Figma 进行编辑。
+
 把本地 HTML 项目批量转换为 Figma 图层：自动识别页面尺寸、解析本地图片和样式、保留可编辑文字，并使用 Group 组织结果。
 
-![插件界面预览](docs/ui-preview.png)
+<img src="docs/ui-preview.png" alt="插件界面预览" width="400">
 
 界面预览（使用临时创建的通用 HTML 示例，仅展示自动尺寸与页面勾选，不含用户测试文件）。
 
