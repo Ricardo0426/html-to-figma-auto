@@ -1,3 +1,5 @@
-# Interface preview
+# 界面预览
 
-Generic demonstration; no user test files.
+界面预览（使用临时创建的通用 HTML 示例，仅展示自动尺寸与页面勾选，不含用户测试文件）。
+
+![插件界面预览](ui-preview.png)
