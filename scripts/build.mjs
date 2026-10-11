@@ -1,0 +1,22 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {execFileSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+import {build} from 'esbuild';
+
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+process.chdir(root);
+execFileSync(process.execPath,['node_modules/typescript/bin/tsc','-p','tsconfig.json'],{stdio:'inherit'});
+const result=await build({stdin:{contents:`import './src/build-info.js';import * as fflate from 'fflate';window.fflate=fflate;import './src/assets.js';import './src/sizing.js';import './src/capture.js';import './src/app.js';`,resolveDir:root},bundle:true,write:false,format:'iife',target:'chrome100',legalComments:'inline'});
+const script=result.outputFiles[0].text.replace(/<\/script/gi,'<\\/script');
+const html=fs.readFileSync('src/ui-template.html','utf8').replace('/* APP_STYLES */',fs.readFileSync('src/ui.css','utf8')).replace('/* APP_SCRIPTS */',()=>script);
+fs.mkdirSync('dist',{recursive:true});
+fs.writeFileSync('ui.html',html);
+fs.writeFileSync('dist/ui.html',html);
+fs.copyFileSync('code.js','dist/code.js');
+const manifest=JSON.parse(fs.readFileSync('manifest.json','utf8'));
+fs.writeFileSync('dist/manifest.json',JSON.stringify({...manifest,main:'code.js',ui:'ui.html'},null,2)+'\n');
+for(const file of ['LICENSE','THIRD_PARTY_NOTICES.md','README.md','CHANGELOG.md'])if(fs.existsSync(file))fs.copyFileSync(file,'dist/'+file);
+fs.copyFileSync('node_modules/fflate/LICENSE','fflate-LICENSE.txt');
+fs.copyFileSync('fflate-LICENSE.txt','dist/fflate-LICENSE.txt');
+console.log('Built installable plugin: dist/manifest.json');
