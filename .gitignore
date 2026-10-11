@@ -51,3 +51,7 @@ user-data/
 Thumbs.db
 .idea/
 .vscode/
+
+# Public preview created with generic demo content
+!docs/
+!docs/ui-preview.png
