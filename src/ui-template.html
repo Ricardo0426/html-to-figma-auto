@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>/* APP_STYLES */</style>
+</head>
+<body>
+<main>
+  <header><div class="brand-icon">H<span>↗</span></div><div><h1>HTML → Figma</h1><p>自动尺寸 · 批量导入 · 可编辑分组</p></div><span class="version">v0.1.1</span></header>
+  <section class="dropzone" id="dropzone" aria-label="添加 HTML 和资源">
+    <div class="drop-symbol">＋</div><h2>把整个项目带进来</h2><p>添加 HTML，或选择包含图片、CSS 的文件夹</p>
+    <div class="actions"><button id="pick-folder" class="primary">选择文件夹</button><button id="pick-files">选择文件</button><button id="pick-zip" class="quiet">ZIP</button></div>
+    <input id="folder" type="file" webkitdirectory multiple hidden>
+    <input id="files" type="file" multiple hidden>
+    <input id="zip" type="file" accept=".zip" hidden>
+  </section>
+  <div class="inventory"><span id="inventory">尚未添加文件</span><button id="clear" class="link" disabled>清空</button></div>
+  <section class="pages-section">
+    <div class="section-bar"><h2>导入清单 <span id="page-count">0</span></h2><div><button id="select-all" class="link">全选</button><button id="scan" class="link" disabled>重新检查</button></div></div>
+    <input id="filter" class="search" placeholder="按文件路径筛选…" aria-label="按文件路径筛选">
+    <div id="pages" class="pages"><div class="empty"><span>◇</span><p>每个 HTML 会成为一个独立的组</p><small>尺寸自动识别，资源缺失会明确提示</small></div></div>
+  </section>
+  <details id="options"><summary>导入设置 <span>自动模式，无需填写</span></summary><div class="options-body">
+    <label class="toggle"><input id="run-scripts" type="checkbox"><span>执行页面脚本<small>用于动态生成的页面；仅对可信 HTML 开启</small></span></label>
+    <div class="setting-row"><label>响应式页面默认视口<input id="default-width" type="number" value="1440" min="64" max="16000" aria-label="默认视口宽度"></label><b>×</b><label>高度<input id="default-height" type="number" value="900" min="64" max="16000" aria-label="默认视口高度"></label></div>
+    <label class="setting-row gap">页面间距<input id="gap" type="number" value="120" min="0" max="5000"> px</label>
+  </div></details>
+  <details id="paste"><summary>粘贴 HTML <span>也可以直接从 AI 复制</span></summary><textarea id="paste-html" placeholder="粘贴完整 HTML 或 HTML 代码块…" aria-label="粘贴 HTML"></textarea><button id="add-paste">添加到清单</button></details>
+  <section class="progress-area" aria-live="polite"><div id="status">准备就绪</div><progress id="progress" value="0" max="1" hidden></progress><div id="summary"></div></section>
+  <details id="diagnostics" hidden><summary>查看检查报告 <span id="warning-count"></span></summary><div id="report"></div><button id="download-report" class="quiet">导出 JSON 报告</button></details>
+  <footer><button id="cancel" hidden>取消</button><button id="retry" hidden>重试失败项</button><button id="import" class="primary" disabled>导入选中页面</button></footer>
+  <p class="footnote">在本地渲染。文字、图片和矢量尽量保留为可编辑图层。</p>
+</main>
+<div id="render-host" aria-hidden="true"></div>
+<script>/* APP_SCRIPTS */</script>
+</body>
+</html>
